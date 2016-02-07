@@ -38,19 +38,15 @@ public class AppTest extends TestCase {
 	@Test
 	public void test1() throws Exception {
 		log.info("Starting Server");
-		try {
-			Endpoint.publish(WebServiceUtils.createServiceAdress(BasseService.class, baseAdress), basseService);
 
-			log.info("wait");
-			List<Basse> basses = basseServiceClient.getBasses();
-			for (Basse basse : basses) {
-				log.info("marque: " + basse.getMarque() + ", " + basse.getModel());
-			}
-		} catch (Exception e) {
-			log.error("erreur", e);
-			e.printStackTrace();
-			throw e;
+		Endpoint.publish(WebServiceUtils.createServiceAdress(BasseService.class, baseAdress), basseService);
+
+		log.info("wait");
+		List<Basse> basses = basseServiceClient.getBasses();
+		for (Basse basse : basses) {
+			log.info("marque: " + basse.getMarque() + ", " + basse.getModel());
 		}
+
 	}
 
 }

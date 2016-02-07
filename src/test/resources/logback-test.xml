@@ -1,27 +1,26 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
-	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-	    <encoder>
-	        <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level (%file:%line\) - %message%n</pattern>
-	    </encoder>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 
+			by default -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level (%file:%line\)	%logger{36} - %msg%n</pattern>
+		</encoder>
 	</appender>
-	
 
 	<logger name="org.springframework">
-		<level value="${org.springframework-level:-{$root-level:-INFO}}" />
-		<appender-ref ref="CONSOLE" />
+		<level value="info" />
 	</logger>
-	<logger name="org.tata">
-		<level value="${org.toto-level:-{$root-level:-INFO}}" />
-		<appender-ref ref="CONSOLE" />
-	</logger>
-	<logger name="org.toto">
-		<level value="${org.tata-level:-{$root-level:-INFO}}" />
-		<appender-ref ref="CONSOLE" />
-	</logger>
-	<root>
-		<level value="${root-level:-INFO}" />
-		<!--<appender-ref ref="CONSOLE" />-->
-	</root>
 
+	<logger name="org.apache.cxf.interceptor">
+		<level value="error" />
+	</logger>
+	
+	<logger name="xyz.mirak">
+		<level value="${xyz.mirak-level:-{$root-level:-debug}}" />
+	</logger>
+	
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+	</root>
 </configuration>
